@@ -7,7 +7,7 @@ file(GLOB LOADER_SOURCES "vk_loader/*.h" "vk_loader/*.cpp")
 
 add_library(vk_loader STATIC ${VULKAN_HEADERS} ${LOADER_SOURCES})
 if (UNIX)
-    target_link_libraries(vortex2d PRIVATE dl)
+    target_link_libraries(vk_loader PUBLIC dl)
 endif (UNIX)
 target_include_directories(vk_loader PUBLIC ./)
 target_compile_features(vk_loader PRIVATE cxx_nullptr)
