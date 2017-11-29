@@ -913,228 +913,228 @@ VkBool32 vkLoaderInstanceInit(VkInstance instance)
     vkLoader_vkCmdBindDescriptorSets = (PFN_vkCmdBindDescriptorSets) vkGetInstanceProcAddr(instance, "vkCmdBindDescriptorSets");
     vkLoader_vkBindBufferMemory = (PFN_vkBindBufferMemory) vkGetInstanceProcAddr(instance, "vkBindBufferMemory");
 #ifdef VK_KHR_external_memory_win32
-    vkLoader_vkGetMemoryWin32HandleKHR = vkGetMemoryWin32HandleKHR_stub;
-    vkLoader_vkGetMemoryWin32HandlePropertiesKHR = vkGetMemoryWin32HandlePropertiesKHR_stub;
+    vkLoader_vkGetMemoryWin32HandleKHR = (PFN_vkGetMemoryWin32HandleKHR)vkGetMemoryWin32HandleKHR_stub;
+    vkLoader_vkGetMemoryWin32HandlePropertiesKHR = (PFN_vkGetMemoryWin32HandlePropertiesKHR)vkGetMemoryWin32HandlePropertiesKHR_stub;
 #endif
 #ifdef VK_KHR_display
-    vkLoader_vkGetPhysicalDeviceDisplayPropertiesKHR = vkGetPhysicalDeviceDisplayPropertiesKHR_stub;
-    vkLoader_vkGetPhysicalDeviceDisplayPlanePropertiesKHR = vkGetPhysicalDeviceDisplayPlanePropertiesKHR_stub;
-    vkLoader_vkGetDisplayPlaneSupportedDisplaysKHR = vkGetDisplayPlaneSupportedDisplaysKHR_stub;
-    vkLoader_vkGetDisplayModePropertiesKHR = vkGetDisplayModePropertiesKHR_stub;
-    vkLoader_vkCreateDisplayModeKHR = vkCreateDisplayModeKHR_stub;
-    vkLoader_vkGetDisplayPlaneCapabilitiesKHR = vkGetDisplayPlaneCapabilitiesKHR_stub;
-    vkLoader_vkCreateDisplayPlaneSurfaceKHR = vkCreateDisplayPlaneSurfaceKHR_stub;
+    vkLoader_vkGetPhysicalDeviceDisplayPropertiesKHR = (PFN_vkGetPhysicalDeviceDisplayPropertiesKHR)vkGetPhysicalDeviceDisplayPropertiesKHR_stub;
+    vkLoader_vkGetPhysicalDeviceDisplayPlanePropertiesKHR = (PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR)vkGetPhysicalDeviceDisplayPlanePropertiesKHR_stub;
+    vkLoader_vkGetDisplayPlaneSupportedDisplaysKHR = (PFN_vkGetDisplayPlaneSupportedDisplaysKHR)vkGetDisplayPlaneSupportedDisplaysKHR_stub;
+    vkLoader_vkGetDisplayModePropertiesKHR = (PFN_vkGetDisplayModePropertiesKHR)vkGetDisplayModePropertiesKHR_stub;
+    vkLoader_vkCreateDisplayModeKHR = (PFN_vkCreateDisplayModeKHR)vkCreateDisplayModeKHR_stub;
+    vkLoader_vkGetDisplayPlaneCapabilitiesKHR = (PFN_vkGetDisplayPlaneCapabilitiesKHR)vkGetDisplayPlaneCapabilitiesKHR_stub;
+    vkLoader_vkCreateDisplayPlaneSurfaceKHR = (PFN_vkCreateDisplayPlaneSurfaceKHR)vkCreateDisplayPlaneSurfaceKHR_stub;
 #endif
 #ifdef VK_KHR_maintenance1
-    vkLoader_vkTrimCommandPoolKHR = vkTrimCommandPoolKHR_stub;
+    vkLoader_vkTrimCommandPoolKHR = (PFN_vkTrimCommandPoolKHR)vkTrimCommandPoolKHR_stub;
 #endif
 #ifdef VK_KHR_get_physical_device_properties2
-    vkLoader_vkGetPhysicalDeviceFeatures2KHR = vkGetPhysicalDeviceFeatures2KHR_stub;
-    vkLoader_vkGetPhysicalDeviceProperties2KHR = vkGetPhysicalDeviceProperties2KHR_stub;
-    vkLoader_vkGetPhysicalDeviceFormatProperties2KHR = vkGetPhysicalDeviceFormatProperties2KHR_stub;
-    vkLoader_vkGetPhysicalDeviceImageFormatProperties2KHR = vkGetPhysicalDeviceImageFormatProperties2KHR_stub;
-    vkLoader_vkGetPhysicalDeviceQueueFamilyProperties2KHR = vkGetPhysicalDeviceQueueFamilyProperties2KHR_stub;
-    vkLoader_vkGetPhysicalDeviceMemoryProperties2KHR = vkGetPhysicalDeviceMemoryProperties2KHR_stub;
-    vkLoader_vkGetPhysicalDeviceSparseImageFormatProperties2KHR = vkGetPhysicalDeviceSparseImageFormatProperties2KHR_stub;
+    vkLoader_vkGetPhysicalDeviceFeatures2KHR = (PFN_vkGetPhysicalDeviceFeatures2KHR)vkGetPhysicalDeviceFeatures2KHR_stub;
+    vkLoader_vkGetPhysicalDeviceProperties2KHR = (PFN_vkGetPhysicalDeviceProperties2KHR)vkGetPhysicalDeviceProperties2KHR_stub;
+    vkLoader_vkGetPhysicalDeviceFormatProperties2KHR = (PFN_vkGetPhysicalDeviceFormatProperties2KHR)vkGetPhysicalDeviceFormatProperties2KHR_stub;
+    vkLoader_vkGetPhysicalDeviceImageFormatProperties2KHR = (PFN_vkGetPhysicalDeviceImageFormatProperties2KHR)vkGetPhysicalDeviceImageFormatProperties2KHR_stub;
+    vkLoader_vkGetPhysicalDeviceQueueFamilyProperties2KHR = (PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR)vkGetPhysicalDeviceQueueFamilyProperties2KHR_stub;
+    vkLoader_vkGetPhysicalDeviceMemoryProperties2KHR = (PFN_vkGetPhysicalDeviceMemoryProperties2KHR)vkGetPhysicalDeviceMemoryProperties2KHR_stub;
+    vkLoader_vkGetPhysicalDeviceSparseImageFormatProperties2KHR = (PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR)vkGetPhysicalDeviceSparseImageFormatProperties2KHR_stub;
 #endif
 #ifdef VK_KHX_device_group
-    vkLoader_vkGetDeviceGroupPeerMemoryFeaturesKHX = vkGetDeviceGroupPeerMemoryFeaturesKHX_stub;
-    vkLoader_vkCmdSetDeviceMaskKHX = vkCmdSetDeviceMaskKHX_stub;
-    vkLoader_vkCmdDispatchBaseKHX = vkCmdDispatchBaseKHX_stub;
-    vkLoader_vkGetDeviceGroupPresentCapabilitiesKHX = vkGetDeviceGroupPresentCapabilitiesKHX_stub;
-    vkLoader_vkGetDeviceGroupSurfacePresentModesKHX = vkGetDeviceGroupSurfacePresentModesKHX_stub;
-    vkLoader_vkGetPhysicalDevicePresentRectanglesKHX = vkGetPhysicalDevicePresentRectanglesKHX_stub;
-    vkLoader_vkAcquireNextImage2KHX = vkAcquireNextImage2KHX_stub;
+    vkLoader_vkGetDeviceGroupPeerMemoryFeaturesKHX = (PFN_vkGetDeviceGroupPeerMemoryFeaturesKHX)vkGetDeviceGroupPeerMemoryFeaturesKHX_stub;
+    vkLoader_vkCmdSetDeviceMaskKHX = (PFN_vkCmdSetDeviceMaskKHX)vkCmdSetDeviceMaskKHX_stub;
+    vkLoader_vkCmdDispatchBaseKHX = (PFN_vkCmdDispatchBaseKHX)vkCmdDispatchBaseKHX_stub;
+    vkLoader_vkGetDeviceGroupPresentCapabilitiesKHX = (PFN_vkGetDeviceGroupPresentCapabilitiesKHX)vkGetDeviceGroupPresentCapabilitiesKHX_stub;
+    vkLoader_vkGetDeviceGroupSurfacePresentModesKHX = (PFN_vkGetDeviceGroupSurfacePresentModesKHX)vkGetDeviceGroupSurfacePresentModesKHX_stub;
+    vkLoader_vkGetPhysicalDevicePresentRectanglesKHX = (PFN_vkGetPhysicalDevicePresentRectanglesKHX)vkGetPhysicalDevicePresentRectanglesKHX_stub;
+    vkLoader_vkAcquireNextImage2KHX = (PFN_vkAcquireNextImage2KHX)vkAcquireNextImage2KHX_stub;
 #endif
 #ifdef VK_KHR_win32_surface
-    vkLoader_vkCreateWin32SurfaceKHR = vkCreateWin32SurfaceKHR_stub;
-    vkLoader_vkGetPhysicalDeviceWin32PresentationSupportKHR = vkGetPhysicalDeviceWin32PresentationSupportKHR_stub;
+    vkLoader_vkCreateWin32SurfaceKHR = (PFN_vkCreateWin32SurfaceKHR)vkCreateWin32SurfaceKHR_stub;
+    vkLoader_vkGetPhysicalDeviceWin32PresentationSupportKHR = (PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR)vkGetPhysicalDeviceWin32PresentationSupportKHR_stub;
 #endif
 #ifdef VK_NV_external_memory_win32
-    vkLoader_vkGetMemoryWin32HandleNV = vkGetMemoryWin32HandleNV_stub;
+    vkLoader_vkGetMemoryWin32HandleNV = (PFN_vkGetMemoryWin32HandleNV)vkGetMemoryWin32HandleNV_stub;
 #endif
 #ifdef VK_KHR_shared_presentable_image
-    vkLoader_vkGetSwapchainStatusKHR = vkGetSwapchainStatusKHR_stub;
+    vkLoader_vkGetSwapchainStatusKHR = (PFN_vkGetSwapchainStatusKHR)vkGetSwapchainStatusKHR_stub;
 #endif
 #ifdef VK_KHX_device_group_creation
-    vkLoader_vkEnumeratePhysicalDeviceGroupsKHX = vkEnumeratePhysicalDeviceGroupsKHX_stub;
+    vkLoader_vkEnumeratePhysicalDeviceGroupsKHX = (PFN_vkEnumeratePhysicalDeviceGroupsKHX)vkEnumeratePhysicalDeviceGroupsKHX_stub;
 #endif
 #ifdef VK_KHR_surface
-    vkLoader_vkDestroySurfaceKHR = vkDestroySurfaceKHR_stub;
-    vkLoader_vkGetPhysicalDeviceSurfaceSupportKHR = vkGetPhysicalDeviceSurfaceSupportKHR_stub;
-    vkLoader_vkGetPhysicalDeviceSurfaceCapabilitiesKHR = vkGetPhysicalDeviceSurfaceCapabilitiesKHR_stub;
-    vkLoader_vkGetPhysicalDeviceSurfaceFormatsKHR = vkGetPhysicalDeviceSurfaceFormatsKHR_stub;
-    vkLoader_vkGetPhysicalDeviceSurfacePresentModesKHR = vkGetPhysicalDeviceSurfacePresentModesKHR_stub;
+    vkLoader_vkDestroySurfaceKHR = (PFN_vkDestroySurfaceKHR)vkDestroySurfaceKHR_stub;
+    vkLoader_vkGetPhysicalDeviceSurfaceSupportKHR = (PFN_vkGetPhysicalDeviceSurfaceSupportKHR)vkGetPhysicalDeviceSurfaceSupportKHR_stub;
+    vkLoader_vkGetPhysicalDeviceSurfaceCapabilitiesKHR = (PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR)vkGetPhysicalDeviceSurfaceCapabilitiesKHR_stub;
+    vkLoader_vkGetPhysicalDeviceSurfaceFormatsKHR = (PFN_vkGetPhysicalDeviceSurfaceFormatsKHR)vkGetPhysicalDeviceSurfaceFormatsKHR_stub;
+    vkLoader_vkGetPhysicalDeviceSurfacePresentModesKHR = (PFN_vkGetPhysicalDeviceSurfacePresentModesKHR)vkGetPhysicalDeviceSurfacePresentModesKHR_stub;
 #endif
 #ifdef VK_KHR_external_fence_fd
-    vkLoader_vkImportFenceFdKHR = vkImportFenceFdKHR_stub;
-    vkLoader_vkGetFenceFdKHR = vkGetFenceFdKHR_stub;
+    vkLoader_vkImportFenceFdKHR = (PFN_vkImportFenceFdKHR)vkImportFenceFdKHR_stub;
+    vkLoader_vkGetFenceFdKHR = (PFN_vkGetFenceFdKHR)vkGetFenceFdKHR_stub;
 #endif
 #ifdef VK_KHR_external_semaphore_capabilities
-    vkLoader_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = vkGetPhysicalDeviceExternalSemaphorePropertiesKHR_stub;
+    vkLoader_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR = (PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR)vkGetPhysicalDeviceExternalSemaphorePropertiesKHR_stub;
 #endif
 #ifdef VK_NN_vi_surface
-    vkLoader_vkCreateViSurfaceNN = vkCreateViSurfaceNN_stub;
+    vkLoader_vkCreateViSurfaceNN = (PFN_vkCreateViSurfaceNN)vkCreateViSurfaceNN_stub;
 #endif
 #ifdef VK_EXT_hdr_metadata
-    vkLoader_vkSetHdrMetadataEXT = vkSetHdrMetadataEXT_stub;
+    vkLoader_vkSetHdrMetadataEXT = (PFN_vkSetHdrMetadataEXT)vkSetHdrMetadataEXT_stub;
 #endif
 #ifdef VK_EXT_sample_locations
-    vkLoader_vkCmdSetSampleLocationsEXT = vkCmdSetSampleLocationsEXT_stub;
-    vkLoader_vkGetPhysicalDeviceMultisamplePropertiesEXT = vkGetPhysicalDeviceMultisamplePropertiesEXT_stub;
+    vkLoader_vkCmdSetSampleLocationsEXT = (PFN_vkCmdSetSampleLocationsEXT)vkCmdSetSampleLocationsEXT_stub;
+    vkLoader_vkGetPhysicalDeviceMultisamplePropertiesEXT = (PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT)vkGetPhysicalDeviceMultisamplePropertiesEXT_stub;
 #endif
 #ifdef VK_EXT_validation_cache
-    vkLoader_vkCreateValidationCacheEXT = vkCreateValidationCacheEXT_stub;
-    vkLoader_vkDestroyValidationCacheEXT = vkDestroyValidationCacheEXT_stub;
-    vkLoader_vkMergeValidationCachesEXT = vkMergeValidationCachesEXT_stub;
-    vkLoader_vkGetValidationCacheDataEXT = vkGetValidationCacheDataEXT_stub;
+    vkLoader_vkCreateValidationCacheEXT = (PFN_vkCreateValidationCacheEXT)vkCreateValidationCacheEXT_stub;
+    vkLoader_vkDestroyValidationCacheEXT = (PFN_vkDestroyValidationCacheEXT)vkDestroyValidationCacheEXT_stub;
+    vkLoader_vkMergeValidationCachesEXT = (PFN_vkMergeValidationCachesEXT)vkMergeValidationCachesEXT_stub;
+    vkLoader_vkGetValidationCacheDataEXT = (PFN_vkGetValidationCacheDataEXT)vkGetValidationCacheDataEXT_stub;
 #endif
 #ifdef VK_KHR_android_surface
-    vkLoader_vkCreateAndroidSurfaceKHR = vkCreateAndroidSurfaceKHR_stub;
+    vkLoader_vkCreateAndroidSurfaceKHR = (PFN_vkCreateAndroidSurfaceKHR)vkCreateAndroidSurfaceKHR_stub;
 #endif
 #ifdef VK_KHR_external_semaphore_win32
-    vkLoader_vkImportSemaphoreWin32HandleKHR = vkImportSemaphoreWin32HandleKHR_stub;
-    vkLoader_vkGetSemaphoreWin32HandleKHR = vkGetSemaphoreWin32HandleKHR_stub;
+    vkLoader_vkImportSemaphoreWin32HandleKHR = (PFN_vkImportSemaphoreWin32HandleKHR)vkImportSemaphoreWin32HandleKHR_stub;
+    vkLoader_vkGetSemaphoreWin32HandleKHR = (PFN_vkGetSemaphoreWin32HandleKHR)vkGetSemaphoreWin32HandleKHR_stub;
 #endif
 #ifdef VK_AMD_draw_indirect_count
-    vkLoader_vkCmdDrawIndirectCountAMD = vkCmdDrawIndirectCountAMD_stub;
-    vkLoader_vkCmdDrawIndexedIndirectCountAMD = vkCmdDrawIndexedIndirectCountAMD_stub;
+    vkLoader_vkCmdDrawIndirectCountAMD = (PFN_vkCmdDrawIndirectCountAMD)vkCmdDrawIndirectCountAMD_stub;
+    vkLoader_vkCmdDrawIndexedIndirectCountAMD = (PFN_vkCmdDrawIndexedIndirectCountAMD)vkCmdDrawIndexedIndirectCountAMD_stub;
 #endif
 #ifdef VK_MVK_ios_surface
-    vkLoader_vkCreateIOSSurfaceMVK = vkCreateIOSSurfaceMVK_stub;
+    vkLoader_vkCreateIOSSurfaceMVK = (PFN_vkCreateIOSSurfaceMVK)vkCreateIOSSurfaceMVK_stub;
 #endif
 #ifdef VK_KHR_xlib_surface
-    vkLoader_vkCreateXlibSurfaceKHR = vkCreateXlibSurfaceKHR_stub;
-    vkLoader_vkGetPhysicalDeviceXlibPresentationSupportKHR = vkGetPhysicalDeviceXlibPresentationSupportKHR_stub;
+    vkLoader_vkCreateXlibSurfaceKHR = (PFN_vkCreateXlibSurfaceKHR)vkCreateXlibSurfaceKHR_stub;
+    vkLoader_vkGetPhysicalDeviceXlibPresentationSupportKHR = (PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR)vkGetPhysicalDeviceXlibPresentationSupportKHR_stub;
 #endif
 #ifdef VK_GOOGLE_display_timing
-    vkLoader_vkGetRefreshCycleDurationGOOGLE = vkGetRefreshCycleDurationGOOGLE_stub;
-    vkLoader_vkGetPastPresentationTimingGOOGLE = vkGetPastPresentationTimingGOOGLE_stub;
+    vkLoader_vkGetRefreshCycleDurationGOOGLE = (PFN_vkGetRefreshCycleDurationGOOGLE)vkGetRefreshCycleDurationGOOGLE_stub;
+    vkLoader_vkGetPastPresentationTimingGOOGLE = (PFN_vkGetPastPresentationTimingGOOGLE)vkGetPastPresentationTimingGOOGLE_stub;
 #endif
 #ifdef VK_MVK_macos_surface
-    vkLoader_vkCreateMacOSSurfaceMVK = vkCreateMacOSSurfaceMVK_stub;
+    vkLoader_vkCreateMacOSSurfaceMVK = (PFN_vkCreateMacOSSurfaceMVK)vkCreateMacOSSurfaceMVK_stub;
 #endif
 #ifdef VK_KHR_mir_surface
-    vkLoader_vkCreateMirSurfaceKHR = vkCreateMirSurfaceKHR_stub;
-    vkLoader_vkGetPhysicalDeviceMirPresentationSupportKHR = vkGetPhysicalDeviceMirPresentationSupportKHR_stub;
+    vkLoader_vkCreateMirSurfaceKHR = (PFN_vkCreateMirSurfaceKHR)vkCreateMirSurfaceKHR_stub;
+    vkLoader_vkGetPhysicalDeviceMirPresentationSupportKHR = (PFN_vkGetPhysicalDeviceMirPresentationSupportKHR)vkGetPhysicalDeviceMirPresentationSupportKHR_stub;
 #endif
 #ifdef VK_EXT_debug_marker
-    vkLoader_vkDebugMarkerSetObjectTagEXT = vkDebugMarkerSetObjectTagEXT_stub;
-    vkLoader_vkDebugMarkerSetObjectNameEXT = vkDebugMarkerSetObjectNameEXT_stub;
-    vkLoader_vkCmdDebugMarkerBeginEXT = vkCmdDebugMarkerBeginEXT_stub;
-    vkLoader_vkCmdDebugMarkerEndEXT = vkCmdDebugMarkerEndEXT_stub;
-    vkLoader_vkCmdDebugMarkerInsertEXT = vkCmdDebugMarkerInsertEXT_stub;
+    vkLoader_vkDebugMarkerSetObjectTagEXT = (PFN_vkDebugMarkerSetObjectTagEXT)vkDebugMarkerSetObjectTagEXT_stub;
+    vkLoader_vkDebugMarkerSetObjectNameEXT = (PFN_vkDebugMarkerSetObjectNameEXT)vkDebugMarkerSetObjectNameEXT_stub;
+    vkLoader_vkCmdDebugMarkerBeginEXT = (PFN_vkCmdDebugMarkerBeginEXT)vkCmdDebugMarkerBeginEXT_stub;
+    vkLoader_vkCmdDebugMarkerEndEXT = (PFN_vkCmdDebugMarkerEndEXT)vkCmdDebugMarkerEndEXT_stub;
+    vkLoader_vkCmdDebugMarkerInsertEXT = (PFN_vkCmdDebugMarkerInsertEXT)vkCmdDebugMarkerInsertEXT_stub;
 #endif
 #ifdef VK_EXT_discard_rectangles
-    vkLoader_vkCmdSetDiscardRectangleEXT = vkCmdSetDiscardRectangleEXT_stub;
+    vkLoader_vkCmdSetDiscardRectangleEXT = (PFN_vkCmdSetDiscardRectangleEXT)vkCmdSetDiscardRectangleEXT_stub;
 #endif
 #ifdef VK_EXT_direct_mode_display
-    vkLoader_vkReleaseDisplayEXT = vkReleaseDisplayEXT_stub;
+    vkLoader_vkReleaseDisplayEXT = (PFN_vkReleaseDisplayEXT)vkReleaseDisplayEXT_stub;
 #endif
 #ifdef VK_KHR_descriptor_update_template
-    vkLoader_vkCreateDescriptorUpdateTemplateKHR = vkCreateDescriptorUpdateTemplateKHR_stub;
-    vkLoader_vkDestroyDescriptorUpdateTemplateKHR = vkDestroyDescriptorUpdateTemplateKHR_stub;
-    vkLoader_vkUpdateDescriptorSetWithTemplateKHR = vkUpdateDescriptorSetWithTemplateKHR_stub;
-    vkLoader_vkCmdPushDescriptorSetWithTemplateKHR = vkCmdPushDescriptorSetWithTemplateKHR_stub;
+    vkLoader_vkCreateDescriptorUpdateTemplateKHR = (PFN_vkCreateDescriptorUpdateTemplateKHR)vkCreateDescriptorUpdateTemplateKHR_stub;
+    vkLoader_vkDestroyDescriptorUpdateTemplateKHR = (PFN_vkDestroyDescriptorUpdateTemplateKHR)vkDestroyDescriptorUpdateTemplateKHR_stub;
+    vkLoader_vkUpdateDescriptorSetWithTemplateKHR = (PFN_vkUpdateDescriptorSetWithTemplateKHR)vkUpdateDescriptorSetWithTemplateKHR_stub;
+    vkLoader_vkCmdPushDescriptorSetWithTemplateKHR = (PFN_vkCmdPushDescriptorSetWithTemplateKHR)vkCmdPushDescriptorSetWithTemplateKHR_stub;
 #endif
 #ifdef VK_EXT_acquire_xlib_display
-    vkLoader_vkAcquireXlibDisplayEXT = vkAcquireXlibDisplayEXT_stub;
-    vkLoader_vkGetRandROutputDisplayEXT = vkGetRandROutputDisplayEXT_stub;
+    vkLoader_vkAcquireXlibDisplayEXT = (PFN_vkAcquireXlibDisplayEXT)vkAcquireXlibDisplayEXT_stub;
+    vkLoader_vkGetRandROutputDisplayEXT = (PFN_vkGetRandROutputDisplayEXT)vkGetRandROutputDisplayEXT_stub;
 #endif
 #ifdef VK_EXT_debug_report
-    vkLoader_vkCreateDebugReportCallbackEXT = vkCreateDebugReportCallbackEXT_stub;
-    vkLoader_vkDestroyDebugReportCallbackEXT = vkDestroyDebugReportCallbackEXT_stub;
-    vkLoader_vkDebugReportMessageEXT = vkDebugReportMessageEXT_stub;
+    vkLoader_vkCreateDebugReportCallbackEXT = (PFN_vkCreateDebugReportCallbackEXT)vkCreateDebugReportCallbackEXT_stub;
+    vkLoader_vkDestroyDebugReportCallbackEXT = (PFN_vkDestroyDebugReportCallbackEXT)vkDestroyDebugReportCallbackEXT_stub;
+    vkLoader_vkDebugReportMessageEXT = (PFN_vkDebugReportMessageEXT)vkDebugReportMessageEXT_stub;
 #endif
 #ifdef VK_ANDROID_native_buffer
-    vkLoader_vkGetSwapchainGrallocUsageANDROID = vkGetSwapchainGrallocUsageANDROID_stub;
-    vkLoader_vkAcquireImageANDROID = vkAcquireImageANDROID_stub;
-    vkLoader_vkQueueSignalReleaseImageANDROID = vkQueueSignalReleaseImageANDROID_stub;
+    vkLoader_vkGetSwapchainGrallocUsageANDROID = (PFN_vkGetSwapchainGrallocUsageANDROID)vkGetSwapchainGrallocUsageANDROID_stub;
+    vkLoader_vkAcquireImageANDROID = (PFN_vkAcquireImageANDROID)vkAcquireImageANDROID_stub;
+    vkLoader_vkQueueSignalReleaseImageANDROID = (PFN_vkQueueSignalReleaseImageANDROID)vkQueueSignalReleaseImageANDROID_stub;
 #endif
 #ifdef VK_NV_external_memory_capabilities
-    vkLoader_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = vkGetPhysicalDeviceExternalImageFormatPropertiesNV_stub;
+    vkLoader_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = (PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV)vkGetPhysicalDeviceExternalImageFormatPropertiesNV_stub;
 #endif
 #ifdef VK_KHR_wayland_surface
-    vkLoader_vkCreateWaylandSurfaceKHR = vkCreateWaylandSurfaceKHR_stub;
-    vkLoader_vkGetPhysicalDeviceWaylandPresentationSupportKHR = vkGetPhysicalDeviceWaylandPresentationSupportKHR_stub;
+    vkLoader_vkCreateWaylandSurfaceKHR = (PFN_vkCreateWaylandSurfaceKHR)vkCreateWaylandSurfaceKHR_stub;
+    vkLoader_vkGetPhysicalDeviceWaylandPresentationSupportKHR = (PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR)vkGetPhysicalDeviceWaylandPresentationSupportKHR_stub;
 #endif
 #ifdef VK_KHR_push_descriptor
-    vkLoader_vkCmdPushDescriptorSetKHR = vkCmdPushDescriptorSetKHR_stub;
+    vkLoader_vkCmdPushDescriptorSetKHR = (PFN_vkCmdPushDescriptorSetKHR)vkCmdPushDescriptorSetKHR_stub;
 #endif
 #ifdef VK_KHR_external_fence_win32
-    vkLoader_vkImportFenceWin32HandleKHR = vkImportFenceWin32HandleKHR_stub;
-    vkLoader_vkGetFenceWin32HandleKHR = vkGetFenceWin32HandleKHR_stub;
+    vkLoader_vkImportFenceWin32HandleKHR = (PFN_vkImportFenceWin32HandleKHR)vkImportFenceWin32HandleKHR_stub;
+    vkLoader_vkGetFenceWin32HandleKHR = (PFN_vkGetFenceWin32HandleKHR)vkGetFenceWin32HandleKHR_stub;
 #endif
 #ifdef VK_KHR_swapchain
-    vkLoader_vkCreateSwapchainKHR = vkCreateSwapchainKHR_stub;
-    vkLoader_vkDestroySwapchainKHR = vkDestroySwapchainKHR_stub;
-    vkLoader_vkGetSwapchainImagesKHR = vkGetSwapchainImagesKHR_stub;
-    vkLoader_vkAcquireNextImageKHR = vkAcquireNextImageKHR_stub;
-    vkLoader_vkQueuePresentKHR = vkQueuePresentKHR_stub;
+    vkLoader_vkCreateSwapchainKHR = (PFN_vkCreateSwapchainKHR)vkCreateSwapchainKHR_stub;
+    vkLoader_vkDestroySwapchainKHR = (PFN_vkDestroySwapchainKHR)vkDestroySwapchainKHR_stub;
+    vkLoader_vkGetSwapchainImagesKHR = (PFN_vkGetSwapchainImagesKHR)vkGetSwapchainImagesKHR_stub;
+    vkLoader_vkAcquireNextImageKHR = (PFN_vkAcquireNextImageKHR)vkAcquireNextImageKHR_stub;
+    vkLoader_vkQueuePresentKHR = (PFN_vkQueuePresentKHR)vkQueuePresentKHR_stub;
 #endif
 #ifdef VK_NV_clip_space_w_scaling
-    vkLoader_vkCmdSetViewportWScalingNV = vkCmdSetViewportWScalingNV_stub;
+    vkLoader_vkCmdSetViewportWScalingNV = (PFN_vkCmdSetViewportWScalingNV)vkCmdSetViewportWScalingNV_stub;
 #endif
 #ifdef VK_KHR_external_fence_capabilities
-    vkLoader_vkGetPhysicalDeviceExternalFencePropertiesKHR = vkGetPhysicalDeviceExternalFencePropertiesKHR_stub;
+    vkLoader_vkGetPhysicalDeviceExternalFencePropertiesKHR = (PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR)vkGetPhysicalDeviceExternalFencePropertiesKHR_stub;
 #endif
 #ifdef VK_AMD_shader_info
-    vkLoader_vkGetShaderInfoAMD = vkGetShaderInfoAMD_stub;
+    vkLoader_vkGetShaderInfoAMD = (PFN_vkGetShaderInfoAMD)vkGetShaderInfoAMD_stub;
 #endif
 #ifdef VK_EXT_display_surface_counter
-    vkLoader_vkGetPhysicalDeviceSurfaceCapabilities2EXT = vkGetPhysicalDeviceSurfaceCapabilities2EXT_stub;
+    vkLoader_vkGetPhysicalDeviceSurfaceCapabilities2EXT = (PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT)vkGetPhysicalDeviceSurfaceCapabilities2EXT_stub;
 #endif
 #ifdef VK_EXT_display_control
-    vkLoader_vkDisplayPowerControlEXT = vkDisplayPowerControlEXT_stub;
-    vkLoader_vkRegisterDeviceEventEXT = vkRegisterDeviceEventEXT_stub;
-    vkLoader_vkRegisterDisplayEventEXT = vkRegisterDisplayEventEXT_stub;
-    vkLoader_vkGetSwapchainCounterEXT = vkGetSwapchainCounterEXT_stub;
+    vkLoader_vkDisplayPowerControlEXT = (PFN_vkDisplayPowerControlEXT)vkDisplayPowerControlEXT_stub;
+    vkLoader_vkRegisterDeviceEventEXT = (PFN_vkRegisterDeviceEventEXT)vkRegisterDeviceEventEXT_stub;
+    vkLoader_vkRegisterDisplayEventEXT = (PFN_vkRegisterDisplayEventEXT)vkRegisterDisplayEventEXT_stub;
+    vkLoader_vkGetSwapchainCounterEXT = (PFN_vkGetSwapchainCounterEXT)vkGetSwapchainCounterEXT_stub;
 #endif
 #ifdef VK_KHR_external_memory_fd
-    vkLoader_vkGetMemoryFdKHR = vkGetMemoryFdKHR_stub;
-    vkLoader_vkGetMemoryFdPropertiesKHR = vkGetMemoryFdPropertiesKHR_stub;
+    vkLoader_vkGetMemoryFdKHR = (PFN_vkGetMemoryFdKHR)vkGetMemoryFdKHR_stub;
+    vkLoader_vkGetMemoryFdPropertiesKHR = (PFN_vkGetMemoryFdPropertiesKHR)vkGetMemoryFdPropertiesKHR_stub;
 #endif
 #ifdef VK_KHR_sampler_ycbcr_conversion
-    vkLoader_vkCreateSamplerYcbcrConversionKHR = vkCreateSamplerYcbcrConversionKHR_stub;
-    vkLoader_vkDestroySamplerYcbcrConversionKHR = vkDestroySamplerYcbcrConversionKHR_stub;
+    vkLoader_vkCreateSamplerYcbcrConversionKHR = (PFN_vkCreateSamplerYcbcrConversionKHR)vkCreateSamplerYcbcrConversionKHR_stub;
+    vkLoader_vkDestroySamplerYcbcrConversionKHR = (PFN_vkDestroySamplerYcbcrConversionKHR)vkDestroySamplerYcbcrConversionKHR_stub;
 #endif
 #ifdef VK_KHR_xcb_surface
-    vkLoader_vkCreateXcbSurfaceKHR = vkCreateXcbSurfaceKHR_stub;
-    vkLoader_vkGetPhysicalDeviceXcbPresentationSupportKHR = vkGetPhysicalDeviceXcbPresentationSupportKHR_stub;
+    vkLoader_vkCreateXcbSurfaceKHR = (PFN_vkCreateXcbSurfaceKHR)vkCreateXcbSurfaceKHR_stub;
+    vkLoader_vkGetPhysicalDeviceXcbPresentationSupportKHR = (PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR)vkGetPhysicalDeviceXcbPresentationSupportKHR_stub;
 #endif
 #ifdef VK_KHR_external_semaphore_fd
-    vkLoader_vkImportSemaphoreFdKHR = vkImportSemaphoreFdKHR_stub;
-    vkLoader_vkGetSemaphoreFdKHR = vkGetSemaphoreFdKHR_stub;
+    vkLoader_vkImportSemaphoreFdKHR = (PFN_vkImportSemaphoreFdKHR)vkImportSemaphoreFdKHR_stub;
+    vkLoader_vkGetSemaphoreFdKHR = (PFN_vkGetSemaphoreFdKHR)vkGetSemaphoreFdKHR_stub;
 #endif
 #ifdef VK_NVX_device_generated_commands
-    vkLoader_vkCmdProcessCommandsNVX = vkCmdProcessCommandsNVX_stub;
-    vkLoader_vkCmdReserveSpaceForCommandsNVX = vkCmdReserveSpaceForCommandsNVX_stub;
-    vkLoader_vkCreateIndirectCommandsLayoutNVX = vkCreateIndirectCommandsLayoutNVX_stub;
-    vkLoader_vkDestroyIndirectCommandsLayoutNVX = vkDestroyIndirectCommandsLayoutNVX_stub;
-    vkLoader_vkCreateObjectTableNVX = vkCreateObjectTableNVX_stub;
-    vkLoader_vkDestroyObjectTableNVX = vkDestroyObjectTableNVX_stub;
-    vkLoader_vkRegisterObjectsNVX = vkRegisterObjectsNVX_stub;
-    vkLoader_vkUnregisterObjectsNVX = vkUnregisterObjectsNVX_stub;
-    vkLoader_vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX = vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX_stub;
+    vkLoader_vkCmdProcessCommandsNVX = (PFN_vkCmdProcessCommandsNVX)vkCmdProcessCommandsNVX_stub;
+    vkLoader_vkCmdReserveSpaceForCommandsNVX = (PFN_vkCmdReserveSpaceForCommandsNVX)vkCmdReserveSpaceForCommandsNVX_stub;
+    vkLoader_vkCreateIndirectCommandsLayoutNVX = (PFN_vkCreateIndirectCommandsLayoutNVX)vkCreateIndirectCommandsLayoutNVX_stub;
+    vkLoader_vkDestroyIndirectCommandsLayoutNVX = (PFN_vkDestroyIndirectCommandsLayoutNVX)vkDestroyIndirectCommandsLayoutNVX_stub;
+    vkLoader_vkCreateObjectTableNVX = (PFN_vkCreateObjectTableNVX)vkCreateObjectTableNVX_stub;
+    vkLoader_vkDestroyObjectTableNVX = (PFN_vkDestroyObjectTableNVX)vkDestroyObjectTableNVX_stub;
+    vkLoader_vkRegisterObjectsNVX = (PFN_vkRegisterObjectsNVX)vkRegisterObjectsNVX_stub;
+    vkLoader_vkUnregisterObjectsNVX = (PFN_vkUnregisterObjectsNVX)vkUnregisterObjectsNVX_stub;
+    vkLoader_vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX = (PFN_vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX)vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX_stub;
 #endif
 #ifdef VK_KHR_external_memory_capabilities
-    vkLoader_vkGetPhysicalDeviceExternalBufferPropertiesKHR = vkGetPhysicalDeviceExternalBufferPropertiesKHR_stub;
+    vkLoader_vkGetPhysicalDeviceExternalBufferPropertiesKHR = (PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR)vkGetPhysicalDeviceExternalBufferPropertiesKHR_stub;
 #endif
 #ifdef VK_KHR_get_memory_requirements2
-    vkLoader_vkGetImageMemoryRequirements2KHR = vkGetImageMemoryRequirements2KHR_stub;
-    vkLoader_vkGetBufferMemoryRequirements2KHR = vkGetBufferMemoryRequirements2KHR_stub;
-    vkLoader_vkGetImageSparseMemoryRequirements2KHR = vkGetImageSparseMemoryRequirements2KHR_stub;
+    vkLoader_vkGetImageMemoryRequirements2KHR = (PFN_vkGetImageMemoryRequirements2KHR)vkGetImageMemoryRequirements2KHR_stub;
+    vkLoader_vkGetBufferMemoryRequirements2KHR = (PFN_vkGetBufferMemoryRequirements2KHR)vkGetBufferMemoryRequirements2KHR_stub;
+    vkLoader_vkGetImageSparseMemoryRequirements2KHR = (PFN_vkGetImageSparseMemoryRequirements2KHR)vkGetImageSparseMemoryRequirements2KHR_stub;
 #endif
 #ifdef VK_KHR_get_surface_capabilities2
-    vkLoader_vkGetPhysicalDeviceSurfaceCapabilities2KHR = vkGetPhysicalDeviceSurfaceCapabilities2KHR_stub;
-    vkLoader_vkGetPhysicalDeviceSurfaceFormats2KHR = vkGetPhysicalDeviceSurfaceFormats2KHR_stub;
+    vkLoader_vkGetPhysicalDeviceSurfaceCapabilities2KHR = (PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR)vkGetPhysicalDeviceSurfaceCapabilities2KHR_stub;
+    vkLoader_vkGetPhysicalDeviceSurfaceFormats2KHR = (PFN_vkGetPhysicalDeviceSurfaceFormats2KHR)vkGetPhysicalDeviceSurfaceFormats2KHR_stub;
 #endif
 #ifdef VK_KHR_display_swapchain
-    vkLoader_vkCreateSharedSwapchainsKHR = vkCreateSharedSwapchainsKHR_stub;
+    vkLoader_vkCreateSharedSwapchainsKHR = (PFN_vkCreateSharedSwapchainsKHR)vkCreateSharedSwapchainsKHR_stub;
 #endif
 #ifdef VK_KHR_bind_memory2
-    vkLoader_vkBindBufferMemory2KHR = vkBindBufferMemory2KHR_stub;
-    vkLoader_vkBindImageMemory2KHR = vkBindImageMemory2KHR_stub;
+    vkLoader_vkBindBufferMemory2KHR = (PFN_vkBindBufferMemory2KHR)vkBindBufferMemory2KHR_stub;
+    vkLoader_vkBindImageMemory2KHR = (PFN_vkBindImageMemory2KHR)vkBindImageMemory2KHR_stub;
 #endif
 
 	

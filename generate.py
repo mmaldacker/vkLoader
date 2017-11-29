@@ -73,7 +73,7 @@ def genDeviceAddr(f, command):
 	f.write('    vkLoader_' + command + ' = (PFN_' + command + ') vkGetDeviceProcAddr(device, "' + command + '");\n')
 
 def genInstanceStub(f, command):
-  f.write('    vkLoader_' + command + ' = ' + command + '_stub;\n')
+  f.write('    vkLoader_' + command + ' = (PFN_' + command + ') ' + command + '_stub;\n')
 
 # Write header file
 with open('vk_loader/vk_loader.h', 'w') as f:
