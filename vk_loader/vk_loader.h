@@ -34,8 +34,8 @@ extern PFN_vkDeviceWaitIdle vkLoader_vkDeviceWaitIdle;
 #define vkDeviceWaitIdle vkLoader_vkDeviceWaitIdle
 extern PFN_vkCreateQueryPool vkLoader_vkCreateQueryPool;
 #define vkCreateQueryPool vkLoader_vkCreateQueryPool
-extern PFN_vkCreateDescriptorSetLayout vkLoader_vkCreateDescriptorSetLayout;
-#define vkCreateDescriptorSetLayout vkLoader_vkCreateDescriptorSetLayout
+extern PFN_vkAllocateMemory vkLoader_vkAllocateMemory;
+#define vkAllocateMemory vkLoader_vkAllocateMemory
 extern PFN_vkCmdWaitEvents vkLoader_vkCmdWaitEvents;
 #define vkCmdWaitEvents vkLoader_vkCmdWaitEvents
 extern PFN_vkEnumerateInstanceLayerProperties vkLoader_vkEnumerateInstanceLayerProperties;
@@ -146,8 +146,8 @@ extern PFN_vkDestroyPipelineCache vkLoader_vkDestroyPipelineCache;
 #define vkDestroyPipelineCache vkLoader_vkDestroyPipelineCache
 extern PFN_vkCmdResolveImage vkLoader_vkCmdResolveImage;
 #define vkCmdResolveImage vkLoader_vkCmdResolveImage
-extern PFN_vkQueueSubmit vkLoader_vkQueueSubmit;
-#define vkQueueSubmit vkLoader_vkQueueSubmit
+extern PFN_vkCreateDescriptorSetLayout vkLoader_vkCreateDescriptorSetLayout;
+#define vkCreateDescriptorSetLayout vkLoader_vkCreateDescriptorSetLayout
 extern PFN_vkDestroyDevice vkLoader_vkDestroyDevice;
 #define vkDestroyDevice vkLoader_vkDestroyDevice
 extern PFN_vkCreateDescriptorPool vkLoader_vkCreateDescriptorPool;
@@ -180,14 +180,14 @@ extern PFN_vkCreateBufferView vkLoader_vkCreateBufferView;
 #define vkCreateBufferView vkLoader_vkCreateBufferView
 extern PFN_vkBeginCommandBuffer vkLoader_vkBeginCommandBuffer;
 #define vkBeginCommandBuffer vkLoader_vkBeginCommandBuffer
-extern PFN_vkDestroyFramebuffer vkLoader_vkDestroyFramebuffer;
-#define vkDestroyFramebuffer vkLoader_vkDestroyFramebuffer
-extern PFN_vkCmdDrawIndirect vkLoader_vkCmdDrawIndirect;
-#define vkCmdDrawIndirect vkLoader_vkCmdDrawIndirect
-extern PFN_vkDestroyRenderPass vkLoader_vkDestroyRenderPass;
-#define vkDestroyRenderPass vkLoader_vkDestroyRenderPass
 extern PFN_vkFreeMemory vkLoader_vkFreeMemory;
 #define vkFreeMemory vkLoader_vkFreeMemory
+extern PFN_vkCmdDrawIndirect vkLoader_vkCmdDrawIndirect;
+#define vkCmdDrawIndirect vkLoader_vkCmdDrawIndirect
+extern PFN_vkMergePipelineCaches vkLoader_vkMergePipelineCaches;
+#define vkMergePipelineCaches vkLoader_vkMergePipelineCaches
+extern PFN_vkDestroyFramebuffer vkLoader_vkDestroyFramebuffer;
+#define vkDestroyFramebuffer vkLoader_vkDestroyFramebuffer
 extern PFN_vkGetPipelineCacheData vkLoader_vkGetPipelineCacheData;
 #define vkGetPipelineCacheData vkLoader_vkGetPipelineCacheData
 extern PFN_vkCmdSetStencilWriteMask vkLoader_vkCmdSetStencilWriteMask;
@@ -234,6 +234,8 @@ extern PFN_vkCreateBuffer vkLoader_vkCreateBuffer;
 #define vkCreateBuffer vkLoader_vkCreateBuffer
 extern PFN_vkCmdCopyQueryPoolResults vkLoader_vkCmdCopyQueryPoolResults;
 #define vkCmdCopyQueryPoolResults vkLoader_vkCmdCopyQueryPoolResults
+extern PFN_vkQueueSubmit vkLoader_vkQueueSubmit;
+#define vkQueueSubmit vkLoader_vkQueueSubmit
 extern PFN_vkAllocateCommandBuffers vkLoader_vkAllocateCommandBuffers;
 #define vkAllocateCommandBuffers vkLoader_vkAllocateCommandBuffers
 extern PFN_vkGetPhysicalDeviceSparseImageFormatProperties vkLoader_vkGetPhysicalDeviceSparseImageFormatProperties;
@@ -254,8 +256,6 @@ extern PFN_vkDestroyDescriptorPool vkLoader_vkDestroyDescriptorPool;
 #define vkDestroyDescriptorPool vkLoader_vkDestroyDescriptorPool
 extern PFN_vkCmdDraw vkLoader_vkCmdDraw;
 #define vkCmdDraw vkLoader_vkCmdDraw
-extern PFN_vkAllocateMemory vkLoader_vkAllocateMemory;
-#define vkAllocateMemory vkLoader_vkAllocateMemory
 extern PFN_vkCmdSetBlendConstants vkLoader_vkCmdSetBlendConstants;
 #define vkCmdSetBlendConstants vkLoader_vkCmdSetBlendConstants
 extern PFN_vkAllocateDescriptorSets vkLoader_vkAllocateDescriptorSets;
@@ -276,8 +276,8 @@ extern PFN_vkCmdClearDepthStencilImage vkLoader_vkCmdClearDepthStencilImage;
 #define vkCmdClearDepthStencilImage vkLoader_vkCmdClearDepthStencilImage
 extern PFN_vkGetImageMemoryRequirements vkLoader_vkGetImageMemoryRequirements;
 #define vkGetImageMemoryRequirements vkLoader_vkGetImageMemoryRequirements
-extern PFN_vkMergePipelineCaches vkLoader_vkMergePipelineCaches;
-#define vkMergePipelineCaches vkLoader_vkMergePipelineCaches
+extern PFN_vkDestroyRenderPass vkLoader_vkDestroyRenderPass;
+#define vkDestroyRenderPass vkLoader_vkDestroyRenderPass
 extern PFN_vkCmdClearColorImage vkLoader_vkCmdClearColorImage;
 #define vkCmdClearColorImage vkLoader_vkCmdClearColorImage
 extern PFN_vkCmdBindDescriptorSets vkLoader_vkCmdBindDescriptorSets;
@@ -634,7 +634,8 @@ extern PFN_vkBindImageMemory2KHR vkLoader_vkBindImageMemory2KHR;
 	
 extern VkBool32 vkLoaderInit();
 extern VkBool32 vkLoaderInstanceInit(VkInstance instance);
-extern VkBool32 vkLoaderInstanceExtensiontInit(VkInstance instance, const char* extension);
+extern VkBool32 vkLoaderInstanceExtensionInit(VkInstance instance, const char* extension);
+extern VkBool32 vkLoaderDeviceExtensionInit(VkDevice device, const char* extension);
 
 #ifdef __cplusplus
 }

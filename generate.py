@@ -19,11 +19,16 @@ vkTree = ET.ElementTree(file=vkFile)
 
 # Get proto
 def getProtoStub(command):
-  proto = command.findtext('proto/type') + ' ' + command.findtext('proto/name') + '_stub'
+  returnType = command.findtext('proto/type')
+  proto = returnType + ' ' + command.findtext('proto/name') + '_stub'
   params = []
   for param in command.iterfind('param'):
     params.append(' '.join(param.itertext()))
-  proto += '(' + ','.join(params) + ') {}\n'
+  proto += '(' + ','.join(params) + ')'
+  if returnType == 'VkResult':
+	proto += '\n{\n    return VK_ERROR_EXTENSION_NOT_PRESENT;\n}\n'
+  else:
+    proto += '{}\n'
   return proto
 
 # Get commands
@@ -63,6 +68,9 @@ def genDefinition(f, command):
 
 def genInstanceAddr(f, command):
 	f.write('    vkLoader_' + command + ' = (PFN_' + command + ') vkGetInstanceProcAddr(instance, "' + command + '");\n')
+	
+def genDeviceAddr(f, command):
+	f.write('    vkLoader_' + command + ' = (PFN_' + command + ') vkGetDeviceProcAddr(device, "' + command + '");\n')
 
 def genInstanceStub(f, command):
   f.write('    vkLoader_' + command + ' = ' + command + '_stub;\n')
@@ -88,7 +96,8 @@ extern "C" {
 	
 extern VkBool32 vkLoaderInit();
 extern VkBool32 vkLoaderInstanceInit(VkInstance instance);
-extern VkBool32 vkLoaderInstanceExtensiontInit(VkInstance instance, const char* extension);
+extern VkBool32 vkLoaderInstanceExtensionInit(VkInstance instance, const char* extension);
+extern VkBool32 vkLoaderDeviceExtensionInit(VkDevice device, const char* extension);
 
 #ifdef __cplusplus
 }
@@ -175,7 +184,7 @@ VkBool32 vkLoaderInstanceInit(VkInstance instance)
     return VK_TRUE;
 }
 
-VkBool32 vkLoaderInstanceExtensiontInit(VkInstance instance, const char* extension)
+VkBool32 vkLoaderInstanceExtensionInit(VkInstance instance, const char* extension)
 {
     if (!vkLoaderHandle) return VK_FALSE;
 
@@ -186,6 +195,24 @@ VkBool32 vkLoaderInstanceExtensiontInit(VkInstance instance, const char* extensi
       f.write('    if (strcmp("' + extension + '", extension) == 0)\n    {\n')
       for command in commands:
         genInstanceAddr(f, command)
+      f.write('    return VK_TRUE;\n    }\n')
+      f.write('#endif\n')
+  f.write('''
+  
+    return VK_FALSE;
+}
+
+extern VkBool32 vkLoaderDeviceExtensionInit(VkDevice device, const char* extension)
+{
+    if (!vkLoaderHandle) return VK_FALSE;
+
+''')
+  for extension, commands in extensions.iteritems():
+    if commands:
+      f.write('#ifdef '  + extension + '\n')
+      f.write('    if (strcmp("' + extension + '", extension) == 0)\n    {\n')
+      for command in commands:
+        genDeviceAddr(f, command)
       f.write('    return VK_TRUE;\n    }\n')
       f.write('#endif\n')
   f.write('''
