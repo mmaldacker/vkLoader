@@ -30,11 +30,31 @@ def getProtoStub(command):
   else:
     proto += '{}\n'
   return proto
+  
+def getProtoForward(command):
+  returnType = command.findtext('proto/type')
+  proto = returnType + ' ' + command.findtext('proto/name')
+  params = []
+  for param in command.iterfind('param'):
+    params.append(' '.join(param.itertext()))
+  proto += '(' + ','.join(params) + ')\n{\n'
+  if returnType == 'VkResult':
+	  proto += '    return '
+  else:
+    proto += '    '
+  args = [arg.text for arg in command.iterfind('param/name')]
+  proto += 'vkLoader_' + command.findtext('proto/name') + '(' + ','.join(args) + ');\n}\n'
+  return proto  
+
+class FunctionDef:
+  def __init__(self, forward, stub):
+    self.forward = forward
+    self.stub = stub
 
 # Get commands
 commands = {}
 for command in vkTree.iterfind('commands/command'):
-		commands[command.findtext('proto/name')] = getProtoStub(command)
+		commands[command.findtext('proto/name')] = FunctionDef(getProtoForward(command), getProtoStub(command))
 
 # Get extensions
 extensions = defaultdict(list)
@@ -57,14 +77,15 @@ def genExtensionCmd(f, gen):
 
 def genDeclaration(f, command):
   f.write('extern PFN_' + command + ' vkLoader_' + command + ';\n')
-  f.write('#define ' + command + ' vkLoader_' + command + '\n')
 
 def genProtoStub(f, command):
   f.write('PFN_' + command + ' vkLoader_' + command + ';\n')
-  f.write(commands[command])
+  f.write(commands[command].stub)
+  f.write(commands[command].forward)
 
-def genDefinition(f, command):
-	f.write('PFN_' + command + ' vkLoader_' + command + ';\n')	
+def genProtoForward(f, command):
+  f.write('PFN_' + command + ' vkLoader_' + command + ';\n')
+  f.write(commands[command].forward)
 
 def genInstanceAddr(f, command):
 	f.write('    vkLoader_' + command + ' = (PFN_' + command + ') vkGetInstanceProcAddr(instance, "' + command + '");\n')
@@ -82,7 +103,6 @@ with open('vk_loader/vk_loader.h', 'w') as f:
 #ifndef VK_LOADER_H
 #define VK_LOADER_H
 
-#define VK_NO_PROTOTYPES
 #include <vulkan/vulkan.h>
 
 #ifdef __cplusplus
@@ -93,7 +113,7 @@ extern "C" {
 	genCmd(f, genDeclaration)
 	genExtensionCmd(f, genDeclaration)
 	f.write('''
-	
+
 extern VkBool32 vkLoaderInit();
 extern VkBool32 vkLoaderInstanceInit(VkInstance instance);
 extern VkBool32 vkLoaderInstanceExtensionInit(VkInstance instance, const char* extension);
@@ -123,7 +143,7 @@ extern "C" {
 #endif
 
 ''')
-  genCmd(f, genDefinition)
+  genCmd(f, genProtoForward)
   genExtensionCmd(f, genProtoStub)
   f.write('''
 	
@@ -131,7 +151,7 @@ static void* vkLoaderHandle = NULL;
 
 
 #ifndef _WIN32
-#define vkLoaderPlatformOpenLibrary(name) dlopen(name, RTLD_LAZY | RTLD_LOCAL)
+#define vkLoaderPlatformOpenLibrary(name) dlopen(name, RTLD_LAZY | RTLD_LOCAL | RTLD_DEEPBIND)
 #define vkLoaderPlatformGetProcAddr(handle, name) dlsym(handle, name)
 #else
 #define vkLoaderPlatformOpenLibrary(name) LoadLibraryA(name)
