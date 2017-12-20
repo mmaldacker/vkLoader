@@ -20,7 +20,7 @@ vkTree = ET.ElementTree(file=vkFile)
 # Get proto
 def getProtoStub(command):
   returnType = command.findtext('proto/type')
-  proto = returnType + ' ' + command.findtext('proto/name') + '_stub'
+  proto = 'VKAPI_ATTR ' + returnType + ' VKAPI_CALL ' + command.findtext('proto/name') + '_stub'
   params = []
   for param in command.iterfind('param'):
     params.append(' '.join(param.itertext()))
@@ -35,7 +35,7 @@ def getProtoStub(command):
   
 def getProtoForward(command):
   returnType = command.findtext('proto/type')
-  proto = returnType + ' ' + command.findtext('proto/name')
+  proto = 'VKAPI_ATTR ' + returnType + ' VKAPI_CALL ' + command.findtext('proto/name')
   params = []
   for param in command.iterfind('param'):
     params.append(' '.join(param.itertext()))
