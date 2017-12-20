@@ -27,6 +27,8 @@ def getProtoStub(command):
   proto += '(' + ','.join(params) + ')'
   if returnType == 'VkResult':
 	proto += '\n{\n    return VK_ERROR_EXTENSION_NOT_PRESENT;\n}\n'
+  elif returnType == 'PFN_vkVoidFunction':
+	proto += '\n{\n    return NULL;\n}\n'
   else:
     proto += '{}\n'
   return proto
@@ -38,7 +40,7 @@ def getProtoForward(command):
   for param in command.iterfind('param'):
     params.append(' '.join(param.itertext()))
   proto += '(' + ','.join(params) + ')\n{\n'
-  if returnType == 'VkResult':
+  if returnType != 'void':
 	  proto += '    return '
   else:
     proto += '    '
