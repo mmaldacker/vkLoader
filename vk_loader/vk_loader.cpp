@@ -73,10 +73,10 @@ VKAPI_ATTR VkResult VKAPI_CALL vkCreateQueryPool(VkDevice   device,const  VkQuer
 {
     return vkLoader_vkCreateQueryPool(device,pCreateInfo,pAllocator,pQueryPool);
 }
-PFN_vkAllocateMemory vkLoader_vkAllocateMemory;
-VKAPI_ATTR VkResult VKAPI_CALL vkAllocateMemory(VkDevice   device,const  VkMemoryAllocateInfo *  pAllocateInfo,const  VkAllocationCallbacks *  pAllocator,VkDeviceMemory *  pMemory)
+PFN_vkCreateDescriptorSetLayout vkLoader_vkCreateDescriptorSetLayout;
+VKAPI_ATTR VkResult VKAPI_CALL vkCreateDescriptorSetLayout(VkDevice   device,const  VkDescriptorSetLayoutCreateInfo *  pCreateInfo,const  VkAllocationCallbacks *  pAllocator,VkDescriptorSetLayout *  pSetLayout)
 {
-    return vkLoader_vkAllocateMemory(device,pAllocateInfo,pAllocator,pMemory);
+    return vkLoader_vkCreateDescriptorSetLayout(device,pCreateInfo,pAllocator,pSetLayout);
 }
 PFN_vkCmdWaitEvents vkLoader_vkCmdWaitEvents;
 VKAPI_ATTR void VKAPI_CALL vkCmdWaitEvents(VkCommandBuffer   commandBuffer,uint32_t   eventCount,const  VkEvent *  pEvents,VkPipelineStageFlags   srcStageMask,VkPipelineStageFlags   dstStageMask,uint32_t   memoryBarrierCount,const  VkMemoryBarrier *  pMemoryBarriers,uint32_t   bufferMemoryBarrierCount,const  VkBufferMemoryBarrier *  pBufferMemoryBarriers,uint32_t   imageMemoryBarrierCount,const  VkImageMemoryBarrier *  pImageMemoryBarriers)
@@ -353,10 +353,10 @@ VKAPI_ATTR void VKAPI_CALL vkCmdResolveImage(VkCommandBuffer   commandBuffer,VkI
 {
     vkLoader_vkCmdResolveImage(commandBuffer,srcImage,srcImageLayout,dstImage,dstImageLayout,regionCount,pRegions);
 }
-PFN_vkCreateDescriptorSetLayout vkLoader_vkCreateDescriptorSetLayout;
-VKAPI_ATTR VkResult VKAPI_CALL vkCreateDescriptorSetLayout(VkDevice   device,const  VkDescriptorSetLayoutCreateInfo *  pCreateInfo,const  VkAllocationCallbacks *  pAllocator,VkDescriptorSetLayout *  pSetLayout)
+PFN_vkQueueSubmit vkLoader_vkQueueSubmit;
+VKAPI_ATTR VkResult VKAPI_CALL vkQueueSubmit(VkQueue   queue,uint32_t   submitCount,const  VkSubmitInfo *  pSubmits,VkFence   fence)
 {
-    return vkLoader_vkCreateDescriptorSetLayout(device,pCreateInfo,pAllocator,pSetLayout);
+    return vkLoader_vkQueueSubmit(queue,submitCount,pSubmits,fence);
 }
 PFN_vkDestroyDevice vkLoader_vkDestroyDevice;
 VKAPI_ATTR void VKAPI_CALL vkDestroyDevice(VkDevice   device,const  VkAllocationCallbacks *  pAllocator)
@@ -438,25 +438,25 @@ VKAPI_ATTR VkResult VKAPI_CALL vkBeginCommandBuffer(VkCommandBuffer   commandBuf
 {
     return vkLoader_vkBeginCommandBuffer(commandBuffer,pBeginInfo);
 }
-PFN_vkFreeMemory vkLoader_vkFreeMemory;
-VKAPI_ATTR void VKAPI_CALL vkFreeMemory(VkDevice   device,VkDeviceMemory   memory,const  VkAllocationCallbacks *  pAllocator)
+PFN_vkDestroyFramebuffer vkLoader_vkDestroyFramebuffer;
+VKAPI_ATTR void VKAPI_CALL vkDestroyFramebuffer(VkDevice   device,VkFramebuffer   framebuffer,const  VkAllocationCallbacks *  pAllocator)
 {
-    vkLoader_vkFreeMemory(device,memory,pAllocator);
+    vkLoader_vkDestroyFramebuffer(device,framebuffer,pAllocator);
 }
 PFN_vkCmdDrawIndirect vkLoader_vkCmdDrawIndirect;
 VKAPI_ATTR void VKAPI_CALL vkCmdDrawIndirect(VkCommandBuffer   commandBuffer,VkBuffer   buffer,VkDeviceSize   offset,uint32_t   drawCount,uint32_t   stride)
 {
     vkLoader_vkCmdDrawIndirect(commandBuffer,buffer,offset,drawCount,stride);
 }
-PFN_vkMergePipelineCaches vkLoader_vkMergePipelineCaches;
-VKAPI_ATTR VkResult VKAPI_CALL vkMergePipelineCaches(VkDevice   device,VkPipelineCache   dstCache,uint32_t   srcCacheCount,const  VkPipelineCache *  pSrcCaches)
+PFN_vkDestroyRenderPass vkLoader_vkDestroyRenderPass;
+VKAPI_ATTR void VKAPI_CALL vkDestroyRenderPass(VkDevice   device,VkRenderPass   renderPass,const  VkAllocationCallbacks *  pAllocator)
 {
-    return vkLoader_vkMergePipelineCaches(device,dstCache,srcCacheCount,pSrcCaches);
+    vkLoader_vkDestroyRenderPass(device,renderPass,pAllocator);
 }
-PFN_vkDestroyFramebuffer vkLoader_vkDestroyFramebuffer;
-VKAPI_ATTR void VKAPI_CALL vkDestroyFramebuffer(VkDevice   device,VkFramebuffer   framebuffer,const  VkAllocationCallbacks *  pAllocator)
+PFN_vkFreeMemory vkLoader_vkFreeMemory;
+VKAPI_ATTR void VKAPI_CALL vkFreeMemory(VkDevice   device,VkDeviceMemory   memory,const  VkAllocationCallbacks *  pAllocator)
 {
-    vkLoader_vkDestroyFramebuffer(device,framebuffer,pAllocator);
+    vkLoader_vkFreeMemory(device,memory,pAllocator);
 }
 PFN_vkGetPipelineCacheData vkLoader_vkGetPipelineCacheData;
 VKAPI_ATTR VkResult VKAPI_CALL vkGetPipelineCacheData(VkDevice   device,VkPipelineCache   pipelineCache,size_t *  pDataSize,void *  pData)
@@ -573,11 +573,6 @@ VKAPI_ATTR void VKAPI_CALL vkCmdCopyQueryPoolResults(VkCommandBuffer   commandBu
 {
     vkLoader_vkCmdCopyQueryPoolResults(commandBuffer,queryPool,firstQuery,queryCount,dstBuffer,dstOffset,stride,flags);
 }
-PFN_vkQueueSubmit vkLoader_vkQueueSubmit;
-VKAPI_ATTR VkResult VKAPI_CALL vkQueueSubmit(VkQueue   queue,uint32_t   submitCount,const  VkSubmitInfo *  pSubmits,VkFence   fence)
-{
-    return vkLoader_vkQueueSubmit(queue,submitCount,pSubmits,fence);
-}
 PFN_vkAllocateCommandBuffers vkLoader_vkAllocateCommandBuffers;
 VKAPI_ATTR VkResult VKAPI_CALL vkAllocateCommandBuffers(VkDevice   device,const  VkCommandBufferAllocateInfo *  pAllocateInfo,VkCommandBuffer *  pCommandBuffers)
 {
@@ -627,6 +622,11 @@ PFN_vkCmdDraw vkLoader_vkCmdDraw;
 VKAPI_ATTR void VKAPI_CALL vkCmdDraw(VkCommandBuffer   commandBuffer,uint32_t   vertexCount,uint32_t   instanceCount,uint32_t   firstVertex,uint32_t   firstInstance)
 {
     vkLoader_vkCmdDraw(commandBuffer,vertexCount,instanceCount,firstVertex,firstInstance);
+}
+PFN_vkAllocateMemory vkLoader_vkAllocateMemory;
+VKAPI_ATTR VkResult VKAPI_CALL vkAllocateMemory(VkDevice   device,const  VkMemoryAllocateInfo *  pAllocateInfo,const  VkAllocationCallbacks *  pAllocator,VkDeviceMemory *  pMemory)
+{
+    return vkLoader_vkAllocateMemory(device,pAllocateInfo,pAllocator,pMemory);
 }
 PFN_vkCmdSetBlendConstants vkLoader_vkCmdSetBlendConstants;
 VKAPI_ATTR void VKAPI_CALL vkCmdSetBlendConstants(VkCommandBuffer   commandBuffer,const  float   blendConstants [4])
@@ -678,10 +678,10 @@ VKAPI_ATTR void VKAPI_CALL vkGetImageMemoryRequirements(VkDevice   device,VkImag
 {
     vkLoader_vkGetImageMemoryRequirements(device,image,pMemoryRequirements);
 }
-PFN_vkDestroyRenderPass vkLoader_vkDestroyRenderPass;
-VKAPI_ATTR void VKAPI_CALL vkDestroyRenderPass(VkDevice   device,VkRenderPass   renderPass,const  VkAllocationCallbacks *  pAllocator)
+PFN_vkMergePipelineCaches vkLoader_vkMergePipelineCaches;
+VKAPI_ATTR VkResult VKAPI_CALL vkMergePipelineCaches(VkDevice   device,VkPipelineCache   dstCache,uint32_t   srcCacheCount,const  VkPipelineCache *  pSrcCaches)
 {
-    vkLoader_vkDestroyRenderPass(device,renderPass,pAllocator);
+    return vkLoader_vkMergePipelineCaches(device,dstCache,srcCacheCount,pSrcCaches);
 }
 PFN_vkCmdClearColorImage vkLoader_vkCmdClearColorImage;
 VKAPI_ATTR void VKAPI_CALL vkCmdClearColorImage(VkCommandBuffer   commandBuffer,VkImage   image,VkImageLayout   imageLayout,const  VkClearColorValue *  pColor,uint32_t   rangeCount,const  VkImageSubresourceRange *  pRanges)
@@ -1765,21 +1765,26 @@ VKAPI_ATTR VkResult VKAPI_CALL vkBindImageMemory2KHR(VkDevice   device,uint32_t 
 static void* vkLoaderHandle = NULL;
 
 
-#ifndef _WIN32
-#define vkLoaderPlatformOpenLibrary(name) dlopen(name, RTLD_LAZY | RTLD_LOCAL | RTLD_DEEPBIND)
+#ifdef __APPLE__
+#define vkLoaderPlatformOpenLibrary(name) dlopen(name, RTLD_LAZY | RTLD_LOCAL)
 #define vkLoaderPlatformGetProcAddr(handle, name) dlsym(handle, name)
-#else
+#elif _WIN32
 #define vkLoaderPlatformOpenLibrary(name) LoadLibraryA(name)
 #define vkLoaderPlatformGetProcAddr(handle, name) GetProcAddress((HMODULE) handle, name)
+#else
+#define vkLoaderPlatformOpenLibrary(name) dlopen(name, RTLD_LAZY | RTLD_LOCAL | RTLD_DEEPBIND)
+#define vkLoaderPlatformGetProcAddr(handle, name) dlsym(handle, name)
 #endif
 
 VkBool32 vkLoaderInit()
 {
 
-#ifndef _WIN32
-    const char* libName = "libvulkan.so.1";
-#else
+#ifdef __APPLE__
+    const char* libName = "libMoltenVK.dylib";
+#elif _WIN32
     const char* libName = "vulkan-1.dll";
+#else
+    const char* libName = "libvulkan.so.1";
 #endif
 
     if (!vkLoaderHandle)
@@ -1823,7 +1828,7 @@ VkBool32 vkLoaderInstanceInit(VkInstance instance)
     vkLoader_vkResetCommandPool = (PFN_vkResetCommandPool) vkGetInstanceProcAddr(instance, "vkResetCommandPool");
     vkLoader_vkDeviceWaitIdle = (PFN_vkDeviceWaitIdle) vkGetInstanceProcAddr(instance, "vkDeviceWaitIdle");
     vkLoader_vkCreateQueryPool = (PFN_vkCreateQueryPool) vkGetInstanceProcAddr(instance, "vkCreateQueryPool");
-    vkLoader_vkAllocateMemory = (PFN_vkAllocateMemory) vkGetInstanceProcAddr(instance, "vkAllocateMemory");
+    vkLoader_vkCreateDescriptorSetLayout = (PFN_vkCreateDescriptorSetLayout) vkGetInstanceProcAddr(instance, "vkCreateDescriptorSetLayout");
     vkLoader_vkCmdWaitEvents = (PFN_vkCmdWaitEvents) vkGetInstanceProcAddr(instance, "vkCmdWaitEvents");
     vkLoader_vkEnumerateInstanceLayerProperties = (PFN_vkEnumerateInstanceLayerProperties) vkGetInstanceProcAddr(instance, "vkEnumerateInstanceLayerProperties");
     vkLoader_vkCmdFillBuffer = (PFN_vkCmdFillBuffer) vkGetInstanceProcAddr(instance, "vkCmdFillBuffer");
@@ -1879,7 +1884,7 @@ VkBool32 vkLoaderInstanceInit(VkInstance instance)
     vkLoader_vkCreateInstance = (PFN_vkCreateInstance) vkGetInstanceProcAddr(instance, "vkCreateInstance");
     vkLoader_vkDestroyPipelineCache = (PFN_vkDestroyPipelineCache) vkGetInstanceProcAddr(instance, "vkDestroyPipelineCache");
     vkLoader_vkCmdResolveImage = (PFN_vkCmdResolveImage) vkGetInstanceProcAddr(instance, "vkCmdResolveImage");
-    vkLoader_vkCreateDescriptorSetLayout = (PFN_vkCreateDescriptorSetLayout) vkGetInstanceProcAddr(instance, "vkCreateDescriptorSetLayout");
+    vkLoader_vkQueueSubmit = (PFN_vkQueueSubmit) vkGetInstanceProcAddr(instance, "vkQueueSubmit");
     vkLoader_vkDestroyDevice = (PFN_vkDestroyDevice) vkGetInstanceProcAddr(instance, "vkDestroyDevice");
     vkLoader_vkCreateDescriptorPool = (PFN_vkCreateDescriptorPool) vkGetInstanceProcAddr(instance, "vkCreateDescriptorPool");
     vkLoader_vkCmdCopyImage = (PFN_vkCmdCopyImage) vkGetInstanceProcAddr(instance, "vkCmdCopyImage");
@@ -1896,10 +1901,10 @@ VkBool32 vkLoaderInstanceInit(VkInstance instance)
     vkLoader_vkDestroyEvent = (PFN_vkDestroyEvent) vkGetInstanceProcAddr(instance, "vkDestroyEvent");
     vkLoader_vkCreateBufferView = (PFN_vkCreateBufferView) vkGetInstanceProcAddr(instance, "vkCreateBufferView");
     vkLoader_vkBeginCommandBuffer = (PFN_vkBeginCommandBuffer) vkGetInstanceProcAddr(instance, "vkBeginCommandBuffer");
-    vkLoader_vkFreeMemory = (PFN_vkFreeMemory) vkGetInstanceProcAddr(instance, "vkFreeMemory");
-    vkLoader_vkCmdDrawIndirect = (PFN_vkCmdDrawIndirect) vkGetInstanceProcAddr(instance, "vkCmdDrawIndirect");
-    vkLoader_vkMergePipelineCaches = (PFN_vkMergePipelineCaches) vkGetInstanceProcAddr(instance, "vkMergePipelineCaches");
     vkLoader_vkDestroyFramebuffer = (PFN_vkDestroyFramebuffer) vkGetInstanceProcAddr(instance, "vkDestroyFramebuffer");
+    vkLoader_vkCmdDrawIndirect = (PFN_vkCmdDrawIndirect) vkGetInstanceProcAddr(instance, "vkCmdDrawIndirect");
+    vkLoader_vkDestroyRenderPass = (PFN_vkDestroyRenderPass) vkGetInstanceProcAddr(instance, "vkDestroyRenderPass");
+    vkLoader_vkFreeMemory = (PFN_vkFreeMemory) vkGetInstanceProcAddr(instance, "vkFreeMemory");
     vkLoader_vkGetPipelineCacheData = (PFN_vkGetPipelineCacheData) vkGetInstanceProcAddr(instance, "vkGetPipelineCacheData");
     vkLoader_vkCmdSetStencilWriteMask = (PFN_vkCmdSetStencilWriteMask) vkGetInstanceProcAddr(instance, "vkCmdSetStencilWriteMask");
     vkLoader_vkDestroyPipelineLayout = (PFN_vkDestroyPipelineLayout) vkGetInstanceProcAddr(instance, "vkDestroyPipelineLayout");
@@ -1923,7 +1928,6 @@ VkBool32 vkLoaderInstanceInit(VkInstance instance)
     vkLoader_vkGetFenceStatus = (PFN_vkGetFenceStatus) vkGetInstanceProcAddr(instance, "vkGetFenceStatus");
     vkLoader_vkCreateBuffer = (PFN_vkCreateBuffer) vkGetInstanceProcAddr(instance, "vkCreateBuffer");
     vkLoader_vkCmdCopyQueryPoolResults = (PFN_vkCmdCopyQueryPoolResults) vkGetInstanceProcAddr(instance, "vkCmdCopyQueryPoolResults");
-    vkLoader_vkQueueSubmit = (PFN_vkQueueSubmit) vkGetInstanceProcAddr(instance, "vkQueueSubmit");
     vkLoader_vkAllocateCommandBuffers = (PFN_vkAllocateCommandBuffers) vkGetInstanceProcAddr(instance, "vkAllocateCommandBuffers");
     vkLoader_vkGetPhysicalDeviceSparseImageFormatProperties = (PFN_vkGetPhysicalDeviceSparseImageFormatProperties) vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceSparseImageFormatProperties");
     vkLoader_vkCmdSetDepthBounds = (PFN_vkCmdSetDepthBounds) vkGetInstanceProcAddr(instance, "vkCmdSetDepthBounds");
@@ -1934,6 +1938,7 @@ VkBool32 vkLoaderInstanceInit(VkInstance instance)
     vkLoader_vkWaitForFences = (PFN_vkWaitForFences) vkGetInstanceProcAddr(instance, "vkWaitForFences");
     vkLoader_vkDestroyDescriptorPool = (PFN_vkDestroyDescriptorPool) vkGetInstanceProcAddr(instance, "vkDestroyDescriptorPool");
     vkLoader_vkCmdDraw = (PFN_vkCmdDraw) vkGetInstanceProcAddr(instance, "vkCmdDraw");
+    vkLoader_vkAllocateMemory = (PFN_vkAllocateMemory) vkGetInstanceProcAddr(instance, "vkAllocateMemory");
     vkLoader_vkCmdSetBlendConstants = (PFN_vkCmdSetBlendConstants) vkGetInstanceProcAddr(instance, "vkCmdSetBlendConstants");
     vkLoader_vkAllocateDescriptorSets = (PFN_vkAllocateDescriptorSets) vkGetInstanceProcAddr(instance, "vkAllocateDescriptorSets");
     vkLoader_vkGetDeviceMemoryCommitment = (PFN_vkGetDeviceMemoryCommitment) vkGetInstanceProcAddr(instance, "vkGetDeviceMemoryCommitment");
@@ -1944,7 +1949,7 @@ VkBool32 vkLoaderInstanceInit(VkInstance instance)
     vkLoader_vkGetPhysicalDeviceFormatProperties = (PFN_vkGetPhysicalDeviceFormatProperties) vkGetInstanceProcAddr(instance, "vkGetPhysicalDeviceFormatProperties");
     vkLoader_vkCmdClearDepthStencilImage = (PFN_vkCmdClearDepthStencilImage) vkGetInstanceProcAddr(instance, "vkCmdClearDepthStencilImage");
     vkLoader_vkGetImageMemoryRequirements = (PFN_vkGetImageMemoryRequirements) vkGetInstanceProcAddr(instance, "vkGetImageMemoryRequirements");
-    vkLoader_vkDestroyRenderPass = (PFN_vkDestroyRenderPass) vkGetInstanceProcAddr(instance, "vkDestroyRenderPass");
+    vkLoader_vkMergePipelineCaches = (PFN_vkMergePipelineCaches) vkGetInstanceProcAddr(instance, "vkMergePipelineCaches");
     vkLoader_vkCmdClearColorImage = (PFN_vkCmdClearColorImage) vkGetInstanceProcAddr(instance, "vkCmdClearColorImage");
     vkLoader_vkCmdBindDescriptorSets = (PFN_vkCmdBindDescriptorSets) vkGetInstanceProcAddr(instance, "vkCmdBindDescriptorSets");
     vkLoader_vkBindBufferMemory = (PFN_vkBindBufferMemory) vkGetInstanceProcAddr(instance, "vkBindBufferMemory");

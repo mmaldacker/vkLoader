@@ -152,21 +152,26 @@ extern "C" {
 static void* vkLoaderHandle = NULL;
 
 
-#ifndef _WIN32
-#define vkLoaderPlatformOpenLibrary(name) dlopen(name, RTLD_LAZY | RTLD_LOCAL | RTLD_DEEPBIND)
+#ifdef __APPLE__
+#define vkLoaderPlatformOpenLibrary(name) dlopen(name, RTLD_LAZY | RTLD_LOCAL)
 #define vkLoaderPlatformGetProcAddr(handle, name) dlsym(handle, name)
-#else
+#elif _WIN32
 #define vkLoaderPlatformOpenLibrary(name) LoadLibraryA(name)
 #define vkLoaderPlatformGetProcAddr(handle, name) GetProcAddress((HMODULE) handle, name)
+#else
+#define vkLoaderPlatformOpenLibrary(name) dlopen(name, RTLD_LAZY | RTLD_LOCAL | RTLD_DEEPBIND)
+#define vkLoaderPlatformGetProcAddr(handle, name) dlsym(handle, name)
 #endif
 
 VkBool32 vkLoaderInit()
 {
 
-#ifndef _WIN32
-    const char* libName = "libvulkan.so.1";
-#else
+#ifdef __APPLE__
+    const char* libName = "libMoltenVK.dylib";
+#elif _WIN32
     const char* libName = "vulkan-1.dll";
+#else
+    const char* libName = "libvulkan.so.1";
 #endif
 
     if (!vkLoaderHandle)
